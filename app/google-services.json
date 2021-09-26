@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "605952412863",
+    "project_id": "autenticacion-c2d2e",
+    "storage_bucket": "autenticacion-c2d2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605952412863:android:a586bde247ff94fbb54a0a",
+        "android_client_info": {
+          "package_name": "com.example.autenticacion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "605952412863-iobq2mhmgb1aisj0qkpmuopd67g9q8nv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.autenticacion",
+            "certificate_hash": "a49e4b452c29448d184f59deeef178cf9c128df0"
+          }
+        },
+        {
+          "client_id": "605952412863-k3iupjk1u4hok78jp3mh9nooai943l3f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUJABTFr5y7lIEbeiJHIfLd_KGIAeAiL4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "605952412863-k3iupjk1u4hok78jp3mh9nooai943l3f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
