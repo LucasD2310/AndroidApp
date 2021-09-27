@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task2) {
                             if(task2.isSuccessful()) {
+                                Toast.makeText(MainActivity.this, "Usuario creado correctamente", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(MainActivity.this, MenuActivity.class));
                                 finish();
                             }

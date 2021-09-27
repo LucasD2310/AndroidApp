@@ -15,7 +15,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,13 +26,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MenuActivity extends AppCompatActivity implements LocationListener {
 
-    private Button bntLogout;
     private TextView textName;
     private TextView textEmail2;
     private TextView textLatitud;
     private TextView textLongitud;
+    private Button bntLogout;
+    private Button bntSaveLocation;
+
+    private String latitud = "";
+    private String longitud = "";
 
     private FirebaseAuth miAuth;
     private DatabaseReference miDatabase;
@@ -49,6 +59,7 @@ public class MenuActivity extends AppCompatActivity implements LocationListener 
         textLatitud = findViewById(R.id.textLatitud);
         textLongitud = findViewById(R.id.textLongitud);
         bntLogout = findViewById(R.id.bntLogout);
+        bntSaveLocation = findViewById(R.id.btnSaveLocation);
 
         bntLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,17 +73,38 @@ public class MenuActivity extends AppCompatActivity implements LocationListener 
         getUserInfo();
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION}, 1001);
             return;
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+
+        bntSaveLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                latitud = textLatitud.getText().toString().replace("Latitud: ", "");
+                longitud = textLongitud.getText().toString().replace("Longitud: ", "");
+                saveUserLocation();
+            }
+        });
+
+
+    }
+
+    private void saveUserLocation() {
+        String location = latitud+","+longitud;
+        String id = miAuth.getCurrentUser().getUid();
+
+        miDatabase.child("User").child(id).child("location").setValue(location).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(MenuActivity.this, "Ubicacion almacenada correctamente", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(MenuActivity.this, "Ubicacion no pudo ser guardada", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void getUserInfo() {
