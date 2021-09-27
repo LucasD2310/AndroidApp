@@ -70,20 +70,26 @@
             android:textSize="24sp"
             android:textStyle="bold"
             tools:text="@string/textLongitud" />
+
+        <Button
+            android:id="@+id/btnSaveLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:text="@string/bntSaveLocation" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
         android:gravity="bottom"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/bntLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             android:text="@string/bntLogout" />
     </LinearLayout>
 

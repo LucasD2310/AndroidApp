@@ -11,7 +11,8 @@
     <string name="bntSendToLogin">I already have an account</string>
     <string name="textName">Username</string>
     <string name="textEmail2">Email</string>
-    <string name="textLatitud">Latitude</string>
-    <string name="textLongitud">Longitude</string>
+    <string name="textLatitud">Latitude:</string>
+    <string name="textLongitud">Longitude:</string>
     <string name="textLocation">Your current location is:</string>
+    <string name="bntSaveLocation">Store Location</string>
 </resources>
